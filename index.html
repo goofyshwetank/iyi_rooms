@@ -68,8 +68,13 @@
 
     <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-2">
+            <a href="#" id="iyi-logo" class="flex items-center space-x-2 cursor-pointer relative group">
                 <img src="logo.png" alt="iYi Logo" width="90" height="45" />
+                <span class="absolute -right-3 top-2 flex items-center">
+                    <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-brand-pink opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-pink"></span>
+                </span>
+                <span class="absolute left-1/2 top-full mt-2 -translate-x-1/2 px-2 py-1 rounded bg-gray-800 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-50 shadow-lg">Click for more info</span>
             </a>
 
             <div class="hidden md:flex items-center space-x-5 lg:space-x-8">
@@ -124,7 +129,7 @@
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-5">Why Choose <span class="text-brand-pink">iYi Rooms</span>?</h2>
                 <p class="text-lg text-gray-600 max-w-xl mx-auto">Experience the difference with our unique features designed for your comfort and convenience.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 <div class="feature-card bg-pink-50/50 p-8 rounded-xl shadow-lg hover:shadow-xl border border-transparent hover:border-pink-200 transition-all duration-300 transform hover:-translate-y-1">
                     <div class="icon-bg flex items-center justify-center w-16 h-16 text-white rounded-full mb-6 shadow-md mx-auto" style="background: linear-gradient(135deg, var(--brand-pink) 0%, #f472b6 100%);">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -152,6 +157,22 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Easy App Experience</h3>
                     <p class="text-gray-600 text-center text-sm">Booking your ideal room is just a few taps away. Download our intuitive app for a seamless experience.</p>
+                </div>
+                <!-- Luxury Experience Feature -->
+                <div class="feature-card bg-pink-50/50 p-8 rounded-xl shadow-lg hover:shadow-xl border border-transparent hover:border-pink-200 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="icon-bg flex items-center justify-center w-16 h-16 text-white rounded-full mb-6 shadow-md mx-auto" style="background: linear-gradient(135deg, var(--brand-pink) 0%, #f472b6 100%);">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Luxury Experience</h3>
+                    <p class="text-gray-600 text-center text-sm">Indulge in our premium rooms, offering a touch of luxury and exceptional comfort for a memorable stay.</p>
+                </div>
+                <!-- 24/7 Support Feature -->
+                <div class="feature-card bg-pink-50/50 p-8 rounded-xl shadow-lg hover:shadow-xl border border-transparent hover:border-pink-200 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="icon-bg flex items-center justify-center w-16 h-16 text-white rounded-full mb-6 shadow-md mx-auto" style="background: linear-gradient(135deg, var(--brand-pink) 0%, #f472b6 100%);">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 0L11.293 12.707a1 1 0 01-1.414 0l-2.121-2.121a1 1 0 010-1.414l3.536-3.536m3.536 3.536a2 2 0 112.828 2.828l1.414-1.414M18.364 5.636A9 9 0 105.636 18.364 9 9 0 0018.364 5.636zM9 12h6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">24/7 Support</h3>
+                    <p class="text-gray-600 text-center text-sm">Our dedicated support team is available around the clock to assist you with any queries or needs.</p>
                 </div>
             </div>
         </div>
@@ -205,7 +226,10 @@
                             </p>
                             <p class="flex items-start text-base">
                                 <svg class="w-6 h-6 text-brand-pink mr-3.5 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.308 1.154a11.06 11.06 0 006.086 6.086l1.154-2.308a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                                <span><strong>Phone:</strong> <a href="tel:9005262576" class="hover:underline hover:text-brand-pink-dark transition-colors">90052 62576</a></span>
+                                <span><strong>Phone:</strong> 
+                                    <a href="tel:9005262576" class="hover:underline hover:text-brand-pink-dark transition-colors">90052 62576</a>, 
+                                    <a href="tel:9005231449" class="hover:underline hover:text-brand-pink-dark transition-colors">90052 31449</a>
+                                </span>
                             </p>
                             <p class="flex items-start text-base">
                                 <svg class="w-6 h-6 text-brand-pink mr-3.5 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -239,8 +263,57 @@
             </div>
             <p class="text-sm">&copy; <span id="currentYear"></span> iYi Rooms. All Rights Reserved.</p>
             <p class="text-xs mt-3 text-gray-500">This website is for promotional purposes. All bookings and services are managed exclusively through the iYi Rooms mobile app.</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://www.facebook.com/p/IYI-Rooms-61560049499801/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"> <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/> </svg>
+                </a>
+                <a href="https://www.instagram.com/iyi_rooms/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/> </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/iyi-rooms-70a697305/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"> <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.844-1.563 3.042 0 3.604 2.003 3.604 4.605v5.591z"/> </svg>
+                </a>
+            </div>
         </div>
     </footer>
+
+    <!-- iYi Info Slider -->
+    <div id="iyi-slider" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-500 ease-in-out rounded-l-2xl flex flex-col" style="display:none;">
+        <div class="flex justify-between items-center p-6 border-b border-gray-200">
+            <div class="flex items-center space-x-3">
+                <img src="logo.png" alt="iYi Logo" class="w-12 h-12 rounded-full border-2 border-brand-pink" />
+                <span class="text-2xl font-bold text-brand-pink">iYi Rooms</span>
+            </div>
+            <button id="close-iyi-slider" class="text-gray-400 hover:text-brand-pink text-3xl font-bold focus:outline-none">&times;</button>
+        </div>
+        <div class="p-8 flex-1 flex flex-col justify-between">
+            <div>
+                <p class="text-xl font-semibold text-gray-800 mb-6 italic text-center">“Your comfort, privacy, and luxury—always our priority.”</p>
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-brand-pink mb-2">Connect with us</h3>
+                    <div class="flex space-x-5 justify-center">
+                        <a href="https://www.facebook.com/p/IYI-Rooms-61560049499801/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"> <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/> </svg>
+                        </a>
+                        <a href="https://www.instagram.com/iyi_rooms/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/> </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/iyi-rooms-70a697305/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"> <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.844-1.563 3.042 0 3.604 2.003 3.604 4.605v5.591z"/> </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-brand-pink mb-2">Contact Us</h3>
+                    <div class="space-y-2 text-gray-700 text-base">
+                        <div class="flex items-center"><svg class="w-5 h-5 text-brand-pink mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> <a href="mailto:support@iyirooms.com" class="hover:underline hover:text-brand-pink-dark transition-colors">support@iyirooms.com</a></div>
+                        <div class="flex items-center"><svg class="w-5 h-5 text-brand-pink mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.308 1.154a11.06 11.06 0 006.086 6.086l1.154-2.308a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> <a href="tel:9005262576" class="hover:underline hover:text-brand-pink-dark transition-colors">90052 62576</a>, <a href="tel:9005231449" class="hover:underline hover:text-brand-pink-dark transition-colors">90052 31449</a></div>
+                        <div class="flex items-center"><svg class="w-5 h-5 text-brand-pink mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> 10, near Sector 11, Jay Nagar, Sector 11, Indira Nagar, Lucknow, Uttar Pradesh 226016</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Mobile menu toggle
@@ -289,7 +362,35 @@
                 }
             });
         });
+
+        // iYi Logo Slider
+        const iyiLogo = document.getElementById('iyi-logo');
+        const iyiSlider = document.getElementById('iyi-slider');
+        const closeIyiSlider = document.getElementById('close-iyi-slider');
+        iyiLogo.addEventListener('click', function(e) {
+            e.preventDefault();
+            iyiSlider.style.display = 'flex';
+            setTimeout(() => {
+                iyiSlider.classList.remove('translate-x-full');
+            }, 10);
+        });
+        closeIyiSlider.addEventListener('click', function() {
+            iyiSlider.classList.add('translate-x-full');
+            setTimeout(() => {
+                iyiSlider.style.display = 'none';
+            }, 500);
+        });
+        // Optional: Close slider when clicking outside
+        iyiSlider.addEventListener('click', function(e) {
+            if (e.target === iyiSlider) {
+                closeIyiSlider.click();
+            }
+        });
     </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
