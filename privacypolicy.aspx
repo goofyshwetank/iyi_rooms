@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - iYi Rooms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        :root {
+            --brand-pink: #f91376;
+        }
+        .text-brand-pink { color: var(--brand-pink); }
+        .hover\:text-brand-pink:hover { color: var(--brand-pink); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <div class="mb-6">
+                <img src="logo.png" alt="iYi Rooms Logo" class="h-12 mb-4">
+            </div>
+            
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
+            
+            <div class="prose max-w-none text-gray-700 leading-relaxed">
+                <p class="mb-6">Iyirooms is committed to protecting your information. This privacy notice provides details about the information we collect about you, how we use it and how we protect it. It also explains rights available under applicable law and how to contact us if you have questions about how we use your information.</p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Information about IYIROOMS</h2>
+                <p class="mb-6">In this privacy notice we are here by inform that IYI PROVIDES the best services and with privacy of the customer.</p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Scope of our privacy notice</h2>
+                <p class="mb-4">This notice applies to anyone who interacts with us in relation to our products and services. We may give you additional privacy notices if required for specific interactions.</p>
+                <p class="mb-6">If you book a stay through us at one of our partners' guest houses, hotels and other lodgings (i.e. you stay at a property that is not IYIROOMS-branded), that partner will use your personal data as shown in their privacy notice.</p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Ways in which we obtain personal information</h2>
+                <p class="mb-4">We obtain personal information from you and from travel agents and others who book accommodation for you.</p>
+                <p class="mb-6">Where you provide us with information about other individuals (e.g. the names of others who you will stay at the accommodation you book), you must ensure that they have seen a copy of this privacy policy and are comfortable with you doing this.</p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Categories of personal information</h2>
+                <p class="mb-4">We process two categories of personal information about you and/or, where applicable, others whom you have booked accommodation for, namely:</p>
+                <ul class="list-disc pl-6 mb-6">
+                    <li class="mb-2">standard personal information (e.g. information we use to contact you, identify you or manage our relationship with you); and</li>
+                    <li class="mb-2">special categories of information as defined by applicable law (e.g. if you have indicated a halal or kosher food preference or have chosen to let us know that you have a medical condition requiring special accommodations).</li>
+                </ul>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Purposes and lawful grounds of our processing personal information</h2>
+                <p class="mb-6">We process your personal information for the purposes set out in this notice, based on the legal grounds set out under the Read More text. Different legal grounds apply depending on what category of personal information we process. Standard personal information is normally processed by us on the basis that it is necessary for the performance of a contract, our or a third parties' legitimate interests or law. Further information about this and special category processing grounds is set out below.</p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Legitimate interests</h2>
+                <p class="mb-6">We process your personal information for a number of legitimate interests, including providing you with services, administering our relationship with you, for marketing and service/product improvement purposes and in order to exercise our rights or handle claims. More detailed information about our legitimate interests is set out below.</p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Marketing and Preferences</h2>
+                <p class="mb-4">We may use your personal information to send you marketing by post, telephone, social media platforms, email, SMS, application notifications and silent notifications to track installation status of the application. We may also use your personal information to carry out online paid marketing activities in the nature of retargeting.</p>
+                <p class="mb-4">We also use technology to help us understand your personal preferences and interests so that we can send recommendations and marketing communications that are likely to be of more interest to you.</p>
+                <p class="mb-6">If you wish to unsubscribe from emails sent by us, you can do so at any time by clicking on the "unsubscribe" link that appears in all emails and by adjusting the settings on your device to turn off notifications from our app. Otherwise, you can always contact us at <a href="mailto:dataprotection@iyirooms.com" class="text-brand-pink hover:underline">dataprotection@iyirooms.com</a> to update your contact preferences. You may also object to profiling relating to direct marketing by contacting us at <a href="mailto:dataprotection@iyirooms.com" class="text-brand-pink hover:underline">dataprotection@iyirooms.com</a></p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Cookies and Other Tracking Technologies</h2>
+                <p class="mb-6">We and our service providers use cookies and other tracking technologies to track information about your use of our websites and mobile application. For more information about our use of cookies, please see our Cookie statement.</p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Do-Not-Track</h2>
+                <p class="mb-6">Currently, our systems do not recognize browser do-not-track signals. You may disable tracking on the website by following the steps in the Cookie Statement or on the service provider's own website.</p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Analytics and Advertising Services Provided by Others</h2>
+                <p class="mb-6">Service providers provide us with audience measurement and analytics services that analyse your online interactions (both with the iyirooms and other websites), serve you with tailored marketing and report on the performance of that marketing. We also use Google Place API to make suggestions based on your location or search strings.</p>
+                
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Sharing your information</h2>
+                <p class="mb-4">We share your information within the IYIROOMS Group and with others who help us provide services to you (e.g. your accommodation provider). We also share your information in accordance with the law.</p>
+                <p class="mb-4">We share your information for the purposes set out in this privacy policy, with the following categories of recipients:</p>
+                <ul class="list-disc pl-6 mb-6">
+                    <li class="mb-2">other members of the IYIROOMS Group;</li>
+                    <li class="mb-2">with accommodation managers to enable them to provide the services you request, e.g. we share your name and expected check-in time;</li>
+                    <li class="mb-2">service providers who help deliver products or services on our behalf, entities who have partnered with IYIROOMS in connection with services or a relevant promotional offering, as well as other apps or websites that integrate with our API or Services, or those with an API or Service with which we integrate;</li>
+                    <li class="mb-2">your contact if you use a referral feature;</li>
+                    <li class="mb-2">the general public, if you submit content in a public forum, such as blog comments, social media posts, or other features of our services that are obviously viewable by the general public;</li>
+                    <li class="mb-2">entities where we have a duty to or are permitted to disclose your personal information by law (e.g. law enforcement officials, government authorities);</li>
+                    <li class="mb-2">with the police in the exercise of their functions or with others as required by a court order;</li>
+                    <li class="mb-2">other entities where we (or any member(s) of the IYIROOMS Group) sell or buy any business or assets, in which case we may disclose your personal data to the prospective seller or buyer of such business or assets;</li>
+                    <li class="mb-2">entities in connection with any merger, sale of company assets, consolidation or restructuring, financing, or acquisition of all or a portion of the IYIROOMS Group's business, in which case personal data held by it about its customers or visitors to the website may be one of the transferred assets.</li>
+                </ul>
+                <p class="mb-6">Where we share your personal information, appropriate protections will be in place to protect your personal information as required by data protection laws. Sometimes, we may share information in an aggregated, pseudonymised and/or anonymised form which cannot reasonably be used to identify an individual.</p>
+
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Additional Information for European Union Individuals</h2>
+                <p class="mb-4">The following sections provide additional information for individuals in the European Union or European Economic Area about our processing of their personal information.</p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-4">Transfers outside of your country</h3>
+                <p class="mb-6">IYIROOMS uses global information systems. As a result, INYOURINN transfers your personal information to a country outside of your country and the European Economic Area ("EEA", i.e. EU member states including Norway, Liechtenstein and Iceland) to India and Singapore for the purposes set out in this policy. Not all countries outside of the EEA have data protection laws that are similar to those in the EEA and they may not be regarded by the European Commission as providing an adequate level of data protection.</p>
+
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-4">Retention period</h3>
+                <p class="mb-6">We retain your personal information in accordance with IYIROOMS records retention policies. However, there may be circumstances that mean we must retain your personal information for longer (e.g. if you make a claim in relation to a booking).</p>
+
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-4">Your legal rights</h3>
+                <p class="mb-6">Data protection laws in the EEA and some other countries provide EEA individuals with rights in relation to the information that IYIROOMS holds about them on some computer and paper records. These include rights to access, correct, delete, restrict the use of, object to the use of, port to another person, and withdraw consent to the use of, your information. Exceptions may apply to these rights.</p>
+
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-4">Data protection contacts</h3>
+                <p class="mb-4">If you have any questions, comments, complaints or suggestions in relation to this notice, or any other concerns about the way in which we process information about you, please contact our Data Protection Officer and Privacy Team at <a href="mailto:dataprotection@iyirooms.com" class="text-brand-pink hover:underline">dataprotection@iyirooms.com</a>.</p>
+                <p class="mb-6">You also have a right to make a complaint to your local privacy supervisory authority. If you are in the EU, you can lodge a complaint with another supervisory authority which is based in the country or territory where:</p>
+                <ul class="list-disc pl-6 mb-6">
+                    <li class="mb-2">you are living,</li>
+                    <li class="mb-2">you work, or</li>
+                    <li class="mb-2">the alleged infringement took place</li>
+                </ul>
+
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Changes to this Privacy Notice</h2>
+                <p class="mb-6">This Privacy Notice is current as of the Last Updated date set forth above. We may change this Privacy Notice from time to time, so please be sure to check back periodically. We will post any changes to this Privacy Notice on our websites and our mobile applications.</p>
+                
+                <p class="text-sm text-gray-500 mt-8">Last updated: December 2024</p>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <a href="/" class="text-brand-pink hover:underline">← Back to iYi Rooms</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
