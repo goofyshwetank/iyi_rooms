@@ -1,400 +1,343 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="31PuvN5KOWz6D6b761W5uUseFQLd4T18Ss70ZKeobsQ" />
-    <title>iYi Rooms - Flexible & Safe Hotel Stays</title>
+    <title>iYi Rooms - Find Your Perfect Stay | Premium Hotel Experience</title>
+    <meta name="description" content="Discover premium hotels with iYi Rooms. Browse our curated collection of luxury accommodations with flexible booking options. Download our app for exclusive rates and seamless booking.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iyirooms.com/">
+    <meta property="og:title" content="iYi Rooms - Find Your Perfect Stay">
+    <meta property="og:description" content="Discover premium hotels with flexible booking options. Download our app for exclusive rates.">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Hotel",
+        "name": "iYi Rooms",
+        "description": "Premium hotel accommodation with flexible booking options",
+        "url": "https://iyirooms.com",
+        "logo": "https://iyirooms.com/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-9005262576",
+            "contactType": "customer service",
+            "email": "support@iyirooms.com"
+        }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        /* Custom Pink color */
         :root {
-            --brand-pink: #f91376; /* updated to match logo */
-            --brand-pink-dark: #DB2777; /* pink-600 */
-            --brand-pink-light: #FBCFE8; /* pink-200 */
-            --brand-pink-extralight: #FFF1F2; /* pink-50 */
+            --brand-pink: #f91376;
+            --brand-pink-dark: #DB2777;
+            --brand-pink-light: #FBCFE8;
+            --brand-pink-extralight: #FFF1F2;
+            --gradient-primary: linear-gradient(135deg, #f91376 0%, #DB2777 100%);
+            --gradient-secondary: linear-gradient(135deg, #FFF1F2 0%, #ffffff 100%);
+            --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
+        * { font-family: 'Inter', sans-serif; }
+        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
         .bg-brand-pink { background-color: var(--brand-pink); }
         .text-brand-pink { color: var(--brand-pink); }
         .border-brand-pink { border-color: var(--brand-pink); }
-        .hover\:bg-brand-pink-dark:hover { background-color: var(--brand-pink-dark); }
-        .hover\:text-brand-pink-dark:hover { color: var(--brand-pink-dark); }
-        .ring-brand-pink { ring-color: var(--brand-pink); }
+        .gradient-primary { background: var(--gradient-primary); }
+        .gradient-secondary { background: var(--gradient-secondary); }
+        .shadow-soft { box-shadow: var(--shadow-soft); }
+        .shadow-hover { box-shadow: var(--shadow-hover); }
 
-
-        .hero-gradient {
-            background: linear-gradient(135deg, var(--brand-pink-extralight) 0%, #ffffff 70%, var(--brand-pink-light) 100%);
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .feature-card:hover .icon-bg {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
         }
-        .icon-bg {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        .step-circle {
-            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-        }
-        .step-circle:hover {
-            transform: scale(1.1);
-            background-color: var(--brand-pink-dark);
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Subtle pulse animation for the main CTA button */
+        /* Hotel card animations */
+        .hotel-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hotel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* CTA pulse animation */
         .cta-pulse {
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
-        }
-        .btn-primary {
-            @apply bg-brand-pink hover:bg-brand-pink-dark text-white font-bold py-3 px-8 rounded-lg shadow-lg text-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-pink;
-        }
-         .btn-secondary {
-            @apply bg-white text-brand-pink border-2 border-brand-pink hover:bg-pink-50 font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-pink;
+            0% { box-shadow: 0 0 0 0 rgba(249, 19, 118, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(249, 19, 118, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(249, 19, 118, 0); }
         }
 
+        /* Loading skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Theme switcher */
+        .theme-switch {
+            transition: all 0.3s ease;
+        }
+        .theme-switch:hover {
+            transform: rotate(180deg);
+        }
+
+        /* Dark theme */
+        .dark {
+            --bg-primary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --card-bg: #2a2a2a;
+        }
+
+        .dark body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .dark .bg-white {
+            background-color: var(--card-bg);
+        }
+
+        .dark .text-gray-800 {
+            color: var(--text-primary);
+        }
+
+        .dark .text-gray-600 {
+            color: var(--text-secondary);
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-700">
+<body class="bg-white text-gray-800 transition-colors duration-300">
 
-    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <!-- Header -->
+    <header class="bg-white/90 backdrop-blur-md shadow-soft sticky top-0 z-50 border-b border-gray-100">
         <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-            <a href="#" id="iyi-logo" class="flex items-center space-x-2 cursor-pointer relative group">
-                <img src="logo.png" alt="iYi Logo" width="90" height="45" />
-                <span class="absolute -right-3 top-2 flex items-center">
-                    <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-brand-pink opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-pink"></span>
-                </span>
-                <span class="absolute left-1/2 top-full mt-2 -translate-x-1/2 px-2 py-1 rounded bg-gray-800 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-50 shadow-lg">Click for more info</span>
+            <a href="#" class="flex items-center space-x-3">
+                <img src="logo.png" alt="iYi Rooms" class="h-10 w-auto" />
+                <div class="flex items-center space-x-1">
+                    <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-brand-pink opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-pink"></span>
+                </div>
             </a>
 
-            <div class="hidden md:flex items-center space-x-5 lg:space-x-8">
-                <a href="#features" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Why iYi?</a>
-                <a href="#how-it-works" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">How It Works</a>
-                <a href="#contact" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Contact Us</a>
-                <a href="privacypolicy.html" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Privacy Policy</a>
-                <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="bg-brand-pink hover:bg-brand-pink-dark text-white font-semibold py-2.5 px-5 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#hotels" class="text-gray-700 hover:text-brand-pink font-medium transition-colors duration-300">Hotels</a>
+                <a href="#cities" class="text-gray-700 hover:text-brand-pink font-medium transition-colors duration-300">Cities</a>
+                <a href="#about" class="text-gray-700 hover:text-brand-pink font-medium transition-colors duration-300">About</a>
+                <a href="#contact" class="text-gray-700 hover:text-brand-pink font-medium transition-colors duration-300">Contact</a>
+                
+                <button id="theme-toggle" class="theme-switch p-2 rounded-full hover:bg-gray-100 transition-colors duration-300">
+                    <i class="fas fa-moon text-gray-600"></i>
+                </button>
+                
+                <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="gradient-primary text-white font-semibold py-3 px-6 rounded-full shadow-soft hover:shadow-hover transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-download mr-2"></i>
                     Download App
                 </a>
             </div>
 
-            <div class="md:hidden">
+            <div class="lg:hidden flex items-center space-x-4">
+                <button id="theme-toggle-mobile" class="theme-switch p-2 rounded-full hover:bg-gray-100 transition-colors duration-300">
+                    <i class="fas fa-moon text-gray-600"></i>
+                </button>
                 <button id="mobile-menu-button" class="text-gray-600 hover:text-brand-pink focus:outline-none p-2 rounded-md">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </nav>
 
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-xl absolute top-full left-0 right-0 z-40 rounded-b-lg">
-            <a href="#features" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Why iYi?</a>
-            <a href="#how-it-works" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">How It Works</a>
-            <a href="#contact" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Contact Us</a>
-            <a href="privacypolicy.html" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Privacy Policy</a>
-            <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="block mx-6 my-4 bg-brand-pink hover:bg-brand-pink-dark text-white text-center font-semibold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                Download App
-            </a>
+        <div id="mobile-menu" class="lg:hidden hidden bg-white shadow-hover absolute top-full left-0 right-0 z-40 rounded-b-lg border-t border-gray-100">
+            <div class="px-4 py-2 space-y-1">
+                <a href="#hotels" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-brand-pink rounded-lg transition-colors duration-300 font-medium">Hotels</a>
+                <a href="#cities" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-brand-pink rounded-lg transition-colors duration-300 font-medium">Cities</a>
+                <a href="#about" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-brand-pink rounded-lg transition-colors duration-300 font-medium">About</a>
+                <a href="#contact" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-brand-pink rounded-lg transition-colors duration-300 font-medium">Contact</a>
+                <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="block mx-4 my-4 gradient-primary text-white text-center font-semibold py-3 px-4 rounded-full shadow-soft hover:shadow-hover transition-all duration-300">
+                    <i class="fas fa-download mr-2"></i>
+                    Download App
+                </a>
+            </div>
         </div>
     </header>
 
-    <section class="hero-gradient pt-24 pb-20 md:pt-36 md:pb-28">
-        <div class="container mx-auto px-4 sm:px-6 text-center">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-800 mb-6 leading-tight">
-                Flexible & Secure Stays: <br class="hidden sm:block"/> <span class="text-brand-pink">Book by the Hour or Night</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-                Your ideal room, exactly when you need it. Safe, welcoming, and couple-friendly. Download the iYi app to explore and book with ease.
-            </p>
-            <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary cta-pulse py-4 px-10 inline-flex items-center space-x-3">
-                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 18C7 19.1046 6.10457 20 5 20C3.89543 20 3 19.1046 3 18C3 16.8954 3.89543 16 5 16C6.10457 16 7 16.8954 7 18ZM13.7386 10.3465L10.0652 12.0322L14.5294 14.3941L13.7386 10.3465ZM19 18C19 19.1046 18.1046 20 17 20C15.8954 20 15 19.1046 15 18C15 16.8954 15.8954 16 17 16C18.1046 16 19 16.8954 19 18ZM9.16999 4.32988L16.6054 8.04607L15.2165 15.6059L7.78111 11.8897L9.16999 4.32988ZM10.0167 2.30188C9.06642 1.78973 7.92991 2.27064 7.41776 3.22092L4.28341 9.47037C3.77126 10.4206 4.25217 11.5571 5.20245 12.0693L12.6379 15.7855C12.7917 15.8646 12.9573 15.9147 13.1261 15.9333L15.3093 19.779C15.8496 20.6824 16.9092 21.0319 17.8126 20.4917C18.7159 19.9514 19.0655 18.8918 18.5252 17.9884L16.342 14.1427C16.3048 14.0722 16.2776 13.9976 16.2615 13.9209L17.6504 6.36097C18.1625 5.41069 17.6816 4.27418 16.7313 3.76203L10.0167 2.30188Z"></path></svg>
-                <span>Get the iYi App</span>
-            </a>
-            <div class="mt-10">
-                <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">
-                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-16 sm:h-20 mx-auto transition-transform duration-300 hover:scale-105" onerror="this.style.display='none'; console.error('Google Play badge failed to load.');" />
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4 sm:px-6">
-            <div class="text-center mb-14 md:mb-20">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-5">Why Choose <span class="text-brand-pink">iYi Rooms</span>?</h2>
-                <p class="text-lg text-gray-600 max-w-xl mx-auto">Experience the difference with our unique features designed for your comfort and convenience.</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                <div class="feature-card bg-pink-50/50 p-8 rounded-xl shadow-lg hover:shadow-xl border border-transparent hover:border-pink-200 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="icon-bg flex items-center justify-center w-16 h-16 text-white rounded-full mb-6 shadow-md mx-auto" style="background: linear-gradient(135deg, var(--brand-pink) 0%, #f472b6 100%);">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Flexible Booking</h3>
-                    <p class="text-gray-600 text-center text-sm">Book by the hour or for the night. iYi offers ultimate flexibility to match your schedule and budget.</p>
-                </div>
-                <div class="feature-card bg-pink-50/50 p-8 rounded-xl shadow-lg hover:shadow-xl border border-transparent hover:border-pink-200 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="icon-bg flex items-center justify-center w-16 h-16 text-white rounded-full mb-6 shadow-md mx-auto" style="background: linear-gradient(135deg, var(--brand-pink) 0%, #f472b6 100%);">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Safety Guarantee</h3>
-                    <p class="text-gray-600 text-center text-sm">Your peace of mind is paramount. We partner with verified hotels to ensure a secure and worry-free stay.</p>
-                </div>
-                <div class="feature-card bg-pink-50/50 p-8 rounded-xl shadow-lg hover:shadow-xl border border-transparent hover:border-pink-200 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="icon-bg flex items-center justify-center w-16 h-16 text-white rounded-full mb-6 shadow-md mx-auto" style="background: linear-gradient(135deg, var(--brand-pink) 0%, #f472b6 100%);">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Couple Friendly</h3>
-                    <p class="text-gray-600 text-center text-sm">iYi welcomes couples. Find comfortable, private, and judgment-free spaces with ease through our app.</p>
-                </div>
-                <div class="feature-card bg-pink-50/50 p-8 rounded-xl shadow-lg hover:shadow-xl border border-transparent hover:border-pink-200 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="icon-bg flex items-center justify-center w-16 h-16 text-white rounded-full mb-6 shadow-md mx-auto" style="background: linear-gradient(135deg, var(--brand-pink) 0%, #f472b6 100%);">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Easy App Experience</h3>
-                    <p class="text-gray-600 text-center text-sm">Booking your ideal room is just a few taps away. Download our intuitive app for a seamless experience.</p>
-                </div>
-                <!-- Luxury Experience Feature -->
-                <div class="feature-card bg-pink-50/50 p-8 rounded-xl shadow-lg hover:shadow-xl border border-transparent hover:border-pink-200 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="icon-bg flex items-center justify-center w-16 h-16 text-white rounded-full mb-6 shadow-md mx-auto" style="background: linear-gradient(135deg, var(--brand-pink) 0%, #f472b6 100%);">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Luxury Experience</h3>
-                    <p class="text-gray-600 text-center text-sm">Indulge in our premium rooms, offering a touch of luxury and exceptional comfort for a memorable stay.</p>
-                </div>
-                <!-- 24/7 Support Feature -->
-                <div class="feature-card bg-pink-50/50 p-8 rounded-xl shadow-lg hover:shadow-xl border border-transparent hover:border-pink-200 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="icon-bg flex items-center justify-center w-16 h-16 text-white rounded-full mb-6 shadow-md mx-auto" style="background: linear-gradient(135deg, var(--brand-pink) 0%, #f472b6 100%);">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 0L11.293 12.707a1 1 0 01-1.414 0l-2.121-2.121a1 1 0 010-1.414l3.536-3.536m3.536 3.536a2 2 0 112.828 2.828l1.414-1.414M18.364 5.636A9 9 0 105.636 18.364 9 9 0 0018.364 5.636zM9 12h6"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">24/7 Support</h3>
-                    <p class="text-gray-600 text-center text-sm">Our dedicated support team is available around the clock to assist you with any queries or needs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="how-it-works" class="py-16 md:py-24 bg-pink-50/30">
-        <div class="container mx-auto px-4 sm:px-6">
-            <div class="text-center mb-14 md:mb-20">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-5">Get Started in <span class="text-brand-pink">3 Simple Steps</span></h2>
-                <p class="text-lg text-gray-600 max-w-xl mx-auto">Booking your perfect stay with iYi is quick and easy.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8 md:gap-12 items-start">
-                <div class="text-center p-6 group">
-                    <div class="step-circle flex items-center justify-center w-24 h-24 bg-brand-pink text-white rounded-full mb-8 mx-auto shadow-lg text-4xl font-bold border-4 border-white group-hover:border-pink-200">1</div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Download the App</h3>
-                    <p class="text-gray-600">Grab the iYi app from the Google Play Store. It's free and easy to install!</p>
-                </div>
-                <div class="text-center p-6 group">
-                    <div class="step-circle flex items-center justify-center w-24 h-24 bg-brand-pink text-white rounded-full mb-8 mx-auto shadow-lg text-4xl font-bold border-4 border-white group-hover:border-pink-200">2</div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Browse & Discover</h3>
-                    <p class="text-gray-600">Explore a variety of rooms and flexible booking options tailored to your needs.</p>
-                </div>
-                <div class="text-center p-6 group">
-                    <div class="step-circle flex items-center justify-center w-24 h-24 bg-brand-pink text-white rounded-full mb-8 mx-auto shadow-lg text-4xl font-bold border-4 border-white group-hover:border-pink-200">3</div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Book & Enjoy</h3>
-                    <p class="text-gray-600">Confirm your choice securely and look forward to your comfortable iYi stay.</p>
-                </div>
-            </div>
-            <div class="text-center mt-16">
-                <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary py-3.5 px-10">
-                    Download iYi App Now
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4 sm:px-6">
-            <div class="text-center mb-14 md:mb-20">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-5">Get In <span class="text-brand-pink">Touch</span></h2>
-                <p class="text-lg text-gray-600 max-w-xl mx-auto">Have questions or need assistance? We're here to help!</p>
-            </div>
-            <div class="max-w-4xl mx-auto bg-gradient-to-br from-pink-50 to-white p-8 md:p-12 rounded-xl shadow-2xl border border-pink-100">
-                <div class="grid md:grid-cols-2 gap-10 md:gap-12">
-                    <div>
-                        <h3 class="text-2xl font-semibold text-brand-pink mb-6">Contact Details</h3>
-                        <div class="space-y-5 text-gray-700">
-                            <p class="flex items-start text-base">
-                                <svg class="w-6 h-6 text-brand-pink mr-3.5 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                <span><strong>Email:</strong> <a href="mailto:support@iyirooms.com" class="hover:underline hover:text-brand-pink-dark transition-colors">support@iyirooms.com</a></span>
-                            </p>
-                            <p class="flex items-start text-base">
-                                <svg class="w-6 h-6 text-brand-pink mr-3.5 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.308 1.154a11.06 11.06 0 006.086 6.086l1.154-2.308a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                                <span><strong>Phone:</strong> 
-                                    <a href="tel:9005262576" class="hover:underline hover:text-brand-pink-dark transition-colors">90052 62576</a>, 
-                                    <a href="tel:9005231449" class="hover:underline hover:text-brand-pink-dark transition-colors">90052 31449</a>
-                                </span>
-                            </p>
-                            <p class="flex items-start text-base">
-                                <svg class="w-6 h-6 text-brand-pink mr-3.5 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <span><strong>Address:</strong> 10, near Sector 11, Jay Nagar, Sector 11, Indira Nagar, Lucknow, Uttar Pradesh 226016</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mt-8 md:mt-0">
-                         <h3 class="text-2xl font-semibold text-brand-pink mb-6">App Support</h3>
-                         <p class="text-gray-700 mb-4 text-base">For all booking inquiries, modifications, and support, please utilize the dedicated help section within the iYi Rooms mobile app.</p>
-                         <p class="text-gray-700 text-base">Our team is committed to providing prompt assistance through the app for the best experience.</p>
-                         <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block btn-secondary">
-                            Go to App Support
-                         </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-800 text-gray-400 py-16">
-        <div class="container mx-auto px-4 sm:px-6 text-center">
-            <div class="mb-6">
-                <img src="logo.png" alt="iYi Logo" width="90" height="45" class="mx-auto" />
-            </div>
-            <p class="mb-6 text-lg">Flexible and secure hourly & nightly hotel stays.</p>
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="/privacypolicy.html" class="hover:text-brand-pink transition duration-300">Privacy Policy</a>
-                <span class="text-gray-500">|</span>
-                <a href="#" class="hover:text-brand-pink transition duration-300">Terms of Service</a>
-            </div>
-            <p class="text-sm">&copy; <span id="currentYear"></span> iYi Rooms. All Rights Reserved.</p>
-            <p class="text-xs mt-3 text-gray-500">This website is for promotional purposes. All bookings and services are managed exclusively through the iYi Rooms mobile app.</p>
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="https://www.facebook.com/p/IYI-Rooms-61560049499801/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"> <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/> </svg>
-                </a>
-                <a href="https://www.instagram.com/iyi_rooms/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/> </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/iyi-rooms-70a697305/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"> <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.844-1.563 3.042 0 3.604 2.003 3.604 4.605v5.591z"/> </svg>
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- iYi Info Slider -->
-    <div id="iyi-slider" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-500 ease-in-out rounded-l-2xl flex flex-col" style="display:none;">
-        <div class="flex justify-between items-center p-6 border-b border-gray-200">
-            <div class="flex items-center space-x-3">
-                <img src="logo.png" alt="iYi Logo" class="w-12 h-12 rounded-full border-2 border-brand-pink" />
-                <span class="text-2xl font-bold text-brand-pink">iYi Rooms</span>
-            </div>
-            <button id="close-iyi-slider" class="text-gray-400 hover:text-brand-pink text-3xl font-bold focus:outline-none">&times;</button>
-        </div>
-        <div class="p-8 flex-1 flex flex-col justify-between">
-            <div>
-                <p class="text-xl font-semibold text-gray-800 mb-6 italic text-center">“Your comfort, privacy, and luxury—always our priority.”</p>
-                <div class="mb-8">
-                    <h3 class="text-lg font-bold text-brand-pink mb-2">Connect with us</h3>
-                    <div class="flex space-x-5 justify-center">
-                        <a href="https://www.facebook.com/p/IYI-Rooms-61560049499801/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
-                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"> <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/> </svg>
-                        </a>
-                        <a href="https://www.instagram.com/iyi_rooms/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
-                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/> </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/iyi-rooms-70a697305/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-pink transition duration-300">
-                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"> <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.844-1.563 3.042 0 3.604 2.003 3.604 4.605v5.591z"/> </svg>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-brand-pink mb-2">Contact Us</h3>
-                    <div class="space-y-2 text-gray-700 text-base">
-                        <div class="flex items-center"><svg class="w-5 h-5 text-brand-pink mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> <a href="mailto:support@iyirooms.com" class="hover:underline hover:text-brand-pink-dark transition-colors">support@iyirooms.com</a></div>
-                        <div class="flex items-center"><svg class="w-5 h-5 text-brand-pink mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.308 1.154a11.06 11.06 0 006.086 6.086l1.154-2.308a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> <a href="tel:9005262576" class="hover:underline hover:text-brand-pink-dark transition-colors">90052 62576</a>, <a href="tel:9005231449" class="hover:underline hover:text-brand-pink-dark transition-colors">90052 31449</a></div>
-                        <div class="flex items-center"><svg class="w-5 h-5 text-brand-pink mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> 10, near Sector 11, Jay Nagar, Sector 11, Indira Nagar, Lucknow, Uttar Pradesh 226016</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const body = document.body;
-
-        mobileMenuButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent click from immediately closing if menu is open
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 gradient-secondary"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-pink/5 via-transparent to-brand-pink/10"></div>
         
-        // Close mobile menu when clicking outside
-        body.addEventListener('click', (e) => {
-            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Smooth scroll for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const headerOffset = document.querySelector('header').offsetHeight || 70; 
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        <div class="relative z-10 container mx-auto px-4 sm:px-6 text-center">
+            <div class="fade-in">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-gray-800 mb-8 leading-tight">
+                    Find Your Perfect Stay with 
+                    <span class="text-brand-pink">iYi Rooms</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Discover premium hotels with flexible booking options. Browse our curated collection and download our app for exclusive rates and seamless booking.
+                </p>
                 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth"
-                    });
-                }
-            });
-        });
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                    <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="gradient-primary text-white font-bold py-4 px-8 rounded-full shadow-soft hover:shadow-hover transition-all duration-300 transform hover:scale-105 cta-pulse text-lg">
+                        <i class="fas fa-download mr-3"></i>
+                        Download iYi App
+                    </a>
+                    <a href="#hotels" 
+                       class="bg-white text-brand-pink border-2 border-brand-pink font-semibold py-4 px-8 rounded-full shadow-soft hover:shadow-hover transition-all duration-300 transform hover:scale-105 text-lg">
+                        <i class="fas fa-search mr-3"></i>
+                        Browse Hotels
+                    </a>
+                </div>
+                
+                <div class="flex justify-center">
+                    <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+                             alt="Get it on Google Play" 
+                             class="h-16 sm:h-20 transition-transform duration-300 hover:scale-105" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-brand-pink text-2xl"></i>
+        </div>
+    </section>
 
-        // iYi Logo Slider
-        const iyiLogo = document.getElementById('iyi-logo');
-        const iyiSlider = document.getElementById('iyi-slider');
-        const closeIyiSlider = document.getElementById('close-iyi-slider');
-        iyiLogo.addEventListener('click', function(e) {
-            e.preventDefault();
-            iyiSlider.style.display = 'flex';
-            setTimeout(() => {
-                iyiSlider.classList.remove('translate-x-full');
-            }, 10);
-        });
-        closeIyiSlider.addEventListener('click', function() {
-            iyiSlider.classList.add('translate-x-full');
-            setTimeout(() => {
-                iyiSlider.style.display = 'none';
-            }, 500);
-        });
-        // Optional: Close slider when clicking outside
-        iyiSlider.addEventListener('click', function(e) {
-            if (e.target === iyiSlider) {
-                closeIyiSlider.click();
-            }
-        });
-    </script>
+    <!-- Hotel Listings Section -->
+    <section id="hotels" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16 slide-up">
+                <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-6">
+                    Discover Premium <span class="text-brand-pink">Hotels</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Browse our curated collection of luxury accommodations with flexible booking options
+                </p>
+            </div>
 
-</body>
-</html>
+            <!-- Filters -->
+            <div class="bg-white rounded-2xl shadow-soft p-6 mb-12 slide-up">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                        <select id="city-filter" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent">
+                            <option value="">All Cities</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
+                        <select id="price-filter" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent">
+                            <option value="">All Prices</option>
+                            <option value="0-1000">Under ₹1,000</option>
+                            <option value="1000-2000">₹1,000 - ₹2,000</option>
+                            <option value="2000-5000">₹2,000 - ₹5,000</option>
+                            <option value="5000+">Above ₹5,000</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                        <select id="rating-filter" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent">
+                            <option value="">All Ratings</option>
+                            <option value="4">4+ Stars</option>
+                            <option value="3">3+ Stars</option>
+                            <option value="2">2+ Stars</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button id="search-hotels" class="w-full gradient-primary text-white font-semibold py-3 px-6 rounded-lg hover:shadow-hover transition-all duration-300">
+                            <i class="fas fa-search mr-2"></i>
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Hotel Grid -->
+            <div id="hotels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Loading skeletons -->
+                <div class="hotel-card bg-white rounded-2xl shadow-soft overflow-hidden skeleton">
+                    <div class="h-48 bg-gray-200"></div>
+                    <div class="p-6">
+                        <div class="h-6 bg-gray-200 rounded mb-3"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-4"></div>
+                        <div class="h-8 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+                <div class="hotel-card bg-white rounded-2xl shadow-soft overflow-hidden skeleton">
+                    <div class="h-48 bg-gray-200"></div>
+                    <div class="p-6">
+                        <div class="h-6 bg-gray-200 rounded mb-3"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-4"></div>
+                        <div class="h-8 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+                <div class="hotel-card bg-white rounded-2xl shadow-soft overflow-hidden skeleton">
+                    <div class="h-48 bg-gray-200"></div>
+                    <div class="p-6">
+                        <div class="h-6 bg-gray-200 rounded mb-3"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-4"></div>
+                        <div class="h-8 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+            </div>
 
-
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button id="load-more" class="bg-white text-brand-pink border-2 border-brand-pink font-semibold py-3 px-8 rounded-full shadow-soft hover:shadow-hover transition-all duration-300 transform hover:scale-105 hidden">
+                    <i class="fas fa-plus mr-2"></i>
+                    Load More Hotels
+                </button>
+            </div>
+        </div>
+    </section>    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
