@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iYi Hotels - Luxury Stays at Best Prices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        :root {
+            --brand-pink: #f91376;
+            --brand-pink-dark: #DB2777;
+            --brand-pink-light: #FBCFE8;
+            --brand-pink-extralight: #FFF1F2;
+        }
+        .bg-brand-pink { background-color: var(--brand-pink); }
+        .text-brand-pink { color: var(--brand-pink); }
+        .border-brand-pink { border-color: var(--brand-pink); }
+        .hover\:bg-brand-pink-dark:hover { background-color: var(--brand-pink-dark); }
+        .hover\:text-brand-pink-dark:hover { color: var(--brand-pink-dark); }
+        .ring-brand-pink { ring-color: var(--brand-pink); }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--brand-pink-extralight) 0%, #ffffff 70%, var(--brand-pink-light) 100%);
+        }
+        
+        .btn-primary {
+            @apply bg-brand-pink hover:bg-brand-pink-dark text-white font-bold py-3 px-8 rounded-lg shadow-lg text-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-pink;
+        }
+        
+        .btn-secondary {
+            @apply bg-white text-brand-pink border-2 border-brand-pink hover:bg-pink-50 font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-pink;
+        }
+        
+        .hotel-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        .hotel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-700">
+
+    <!-- Navigation -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="logo.png" alt="iYi Logo" width="90" height="45" />
+            </a>
+
+            <div class="hidden md:flex items-center space-x-5 lg:space-x-8">
+                <a href="index.html" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">About Us</a>
+                <a href="hotels.html" class="text-brand-pink font-medium">View Hotels</a>
+                <a href="#contact" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Contact</a>
+                <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="bg-brand-pink hover:bg-brand-pink-dark text-white font-semibold py-2.5 px-5 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    Book on App
+                </a>
+            </div>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-brand-pink focus:outline-none p-2 rounded-md">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-xl absolute top-full left-0 right-0 z-40 rounded-b-lg">
+            <a href="index.html" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Home</a>
+            <a href="#about" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">About Us</a>
+            <a href="hotels.html" class="block px-6 py-4 text-brand-pink font-medium">View Hotels</a>
+            <a href="#contact" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Contact</a>
+            <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="block mx-6 my-4 bg-brand-pink hover:bg-brand-pink-dark text-white text-center font-semibold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                Book on App
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="hero-gradient pt-24 pb-12">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-800 mb-6 leading-tight">
+                Discover <span class="text-brand-pink">Luxury Hotels</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                Explore our curated collection of premium hotels across India. Experience luxury stays at the best prices.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter & Sort Bar -->
+    <section class="bg-white py-8 border-b border-gray-200">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-wrap gap-4 items-center justify-center">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent">
+                        <option>Location</option>
+                        <option>Mumbai</option>
+                        <option>Delhi</option>
+                        <option>Jaipur</option>
+                        <option>Bangalore</option>
+                        <option>Chennai</option>
+                    </select>
+                    
+                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent">
+                        <option>Price Range</option>
+                        <option>₹1000 - ₹3000</option>
+                        <option>₹3000 - ₹5000</option>
+                        <option>₹5000 - ₹8000</option>
+                        <option>₹8000 - ₹10000</option>
+                    </select>
+                    
+                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent">
+                        <option>Star Rating</option>
+                        <option>3 Star</option>
+                        <option>4 Star</option>
+                        <option>5 Star</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotel Cards Grid -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Hotel Card 1 -->
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="iYi Grand Mumbai" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-brand-pink text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            4.8 ★
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">iYi Grand Mumbai</h3>
+                        <p class="text-gray-600 mb-3 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Mumbai, Maharashtra
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-brand-pink">₹2,999</span>
+                            <span class="text-gray-500 text-sm">per night</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free Wi-Fi</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Breakfast</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Pool</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center">
+                            View in App
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hotel Card 2 -->
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="iYi Palace Delhi" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-brand-pink text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            4.9 ★
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">iYi Palace Delhi</h3>
+                        <p class="text-gray-600 mb-3 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Delhi, NCR
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-brand-pink">₹3,499</span>
+                            <span class="text-gray-500 text-sm">per night</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free Wi-Fi</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Breakfast</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Spa</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center">
+                            View in App
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hotel Card 3 -->
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80" alt="iYi Heritage Jaipur" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-brand-pink text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            4.7 ★
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">iYi Heritage Jaipur</h3>
+                        <p class="text-gray-600 mb-3 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Jaipur, Rajasthan
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-brand-pink">₹2,799</span>
+                            <span class="text-gray-500 text-sm">per night</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free Wi-Fi</span>
+                            <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Heritage</span>
+                            <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Restaurant</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center">
+                            View in App
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hotel Card 4 -->
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="iYi Luxury Bangalore" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-brand-pink text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            4.6 ★
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">iYi Luxury Bangalore</h3>
+                        <p class="text-gray-600 mb-3 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Bangalore, Karnataka
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-brand-pink">₹4,199</span>
+                            <span class="text-gray-500 text-sm">per night</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free Wi-Fi</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Breakfast</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Gym</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center">
+                            View in App
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hotel Card 5 -->
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="iYi Marina Chennai" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-brand-pink text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            4.5 ★
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">iYi Marina Chennai</h3>
+                        <p class="text-gray-600 mb-3 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Chennai, Tamil Nadu
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-brand-pink">₹3,299</span>
+                            <span class="text-gray-500 text-sm">per night</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free Wi-Fi</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Beach View</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Pool</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center">
+                            View in App
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hotel Card 6 -->
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="iYi Premium Hyderabad" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-brand-pink text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            4.8 ★
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">iYi Premium Hyderabad</h3>
+                        <p class="text-gray-600 mb-3 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Hyderabad, Telangana
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-brand-pink">₹3,899</span>
+                            <span class="text-gray-500 text-sm">per night</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free Wi-Fi</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Business Center</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Spa</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center">
+                            View in App
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile App Promotion Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left">
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-6">
+                            Ready to <span class="text-brand-pink">Book</span>?
+                        </h2>
+                        <p class="text-lg text-gray-600 mb-8">
+                            Get the iYi App on Google Play Store and start your luxury journey today. Book with ease, stay with comfort.
+                        </p>
+                        <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center space-x-3">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 18C7 19.1046 6.10457 20 5 20C3.89543 20 3 19.1046 3 18C3 16.8954 3.89543 16 5 16C6.10457 16 7 16.8954 7 18ZM13.7386 10.3465L10.0652 12.0322L14.5294 14.3941L13.7386 10.3465ZM19 18C19 19.1046 18.1046 20 17 20C15.8954 20 15 19.1046 15 18C15 16.8954 15.8954 16 17 16C18.1046 16 19 16.8954 19 18ZM9.16999 4.32988L16.6054 8.04607L15.2165 15.6059L7.78111 11.8897L9.16999 4.32988ZM10.0167 2.30188C9.06642 1.78973 7.92991 2.27064 7.41776 3.22092L4.28341 9.47037C3.77126 10.4206 4.25217 11.5571 5.20245 12.0693L12.6379 15.7855C12.7917 15.8646 12.9573 15.9147 13.1261 15.9333L15.3093 19.779C15.8496 20.6824 16.9092 21.0319 17.8126 20.4917C18.7159 19.9514 19.0655 18.8918 18.5252 17.9884L16.342 14.1427C16.3048 14.0722 16.2776 13.9976 16.2615 13.9209L17.6504 6.36097C18.1625 5.41069 17.6816 4.27418 16.7313 3.76203L10.0167 2.30188Z"></path></svg>
+                            <span>Download App</span>
+                        </a>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-brand-pink to-purple-600 rounded-3xl p-8 shadow-2xl">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg">
+                                <div class="w-64 h-96 bg-gray-100 rounded-xl mx-auto flex items-center justify-center">
+                                    <div class="text-center">
+                                        <img src="logo.png" alt="iYi App" class="w-16 h-16 mx-auto mb-4" />
+                                        <p class="text-gray-600 text-sm">App Screenshot</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-16">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <div class="mb-6">
+                <img src="logo.png" alt="iYi Logo" width="90" height="45" class="mx-auto" />
+            </div>
+            <p class="mb-6 text-lg">Luxury stays at the best prices.</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="hover:text-brand-pink transition duration-300">Privacy Policy</a>
+                <span class="text-gray-500">|</span>
+                <a href="#" class="hover:text-brand-pink transition duration-300">Terms of Use</a>
+                <span class="text-gray-500">|</span>
+                <a href="#" class="hover:text-brand-pink transition duration-300">Careers</a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="hover:text-brand-pink transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" class="hover:text-brand-pink transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                </a>
+                <a href="#" class="hover:text-brand-pink transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                </a>
+                <a href="#" class="hover:text-brand-pink transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.844-1.563 3.042 0 3.604 2.003 3.604 4.605v5.591z"/></svg>
+                </a>
+            </div>
+            <p class="text-sm">&copy; 2025 iYi Hospitality Pvt. Ltd. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const body = document.body;
+
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        body.addEventListener('click', (e) => {
+            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>
