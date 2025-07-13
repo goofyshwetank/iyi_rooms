@@ -63,6 +63,16 @@
             @apply bg-white text-brand-pink border-2 border-brand-pink hover:bg-pink-50 font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-pink;
         }
 
+        /* Hotel card styles */
+        .hotel-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        .hotel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
     </style>
 </head>
 <body class="bg-gray-50 text-gray-700">
@@ -122,6 +132,185 @@
                 <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">
                     <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-16 sm:h-20 mx-auto transition-transform duration-300 hover:scale-105" onerror="this.style.display='none'; console.error('Google Play badge failed to load.');" />
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotel Cards Grid -->
+    <section class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-14 md:mb-20">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-5">Discover <span class="text-brand-pink">Premium Hotels</span></h2>
+                <p class="text-lg text-gray-600 max-w-xl mx-auto">Explore our curated collection of luxury hotels across India. Experience comfort and elegance at the best prices.</p>
+            </div>
+
+            <!-- Filter and Search Bar -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-12 mt-12">
+                <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
+                    <div class="flex flex-col sm:flex-row gap-4 flex-1">
+                        <!-- City Filter -->
+                        <div class="flex-1">
+                            <label for="city-filter" class="block text-sm font-medium text-gray-700 mb-2">Select City</label>
+                            <select id="city-filter" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent transition-colors">
+                                <option value="">All Cities</option>
+                                <!-- Cities will be loaded dynamically -->
+                            </select>
+                        </div>
+                        
+                        <!-- Price Range Filter -->
+                        <div class="flex-1">
+                            <label for="price-filter" class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
+                            <select id="price-filter" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent transition-colors">
+                                <option value="">All Prices</option>
+                                <option value="0-1000">Under ₹1,000</option>
+                                <option value="1000-2000">₹1,000 - ₹2,000</option>
+                                <option value="2000-3000">₹2,000 - ₹3,000</option>
+                                <option value="3000-5000">₹3,000 - ₹5,000</option>
+                                <option value="5000+">Above ₹5,000</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Nearby Search -->
+                    <div class="flex flex-row gap-4 items-end mt-4">
+                        <button id="nearby-btn" class="btn-secondary flex items-center justify-center gap-2 whitespace-nowrap">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>Nearby Hotels</span>
+                        </button>
+                        
+                        <!-- More Hotels -->
+                        <button id="more-hotels-btn" class="btn-primary whitespace-nowrap">
+                            More Hotels
+                        </button>
+                        
+                        <!-- Clear Filters -->
+                        <button id="clear-filters" class="btn-secondary whitespace-nowrap">
+                            Clear Filters
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Nearby Search Modal -->
+                <div id="nearby-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                    <div class="bg-white rounded-xl p-6 w-full max-w-md">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Find Hotels Near You</h3>
+                            <button id="close-nearby-modal" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Search Radius</label>
+                                <select id="radius-select" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent">
+                                    <option value="5">5 km</option>
+                                    <option value="10" selected>10 km</option>
+                                    <option value="20">20 km</option>
+                                    <option value="50">50 km</option>
+                                </select>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <button id="get-location-btn" class="btn-primary flex-1">
+                                    Use My Location
+                                </button>
+                                <button id="manual-location-btn" class="btn-secondary flex-1">
+                                    Manual Input
+                                </button>
+                            </div>
+                            
+                            <!-- Manual Location Input -->
+                            <div id="manual-location-input" class="hidden space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Latitude</label>
+                                    <input type="number" id="lat-input" step="any" placeholder="e.g., 19.1136" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Longitude</label>
+                                    <input type="number" id="lng-input" step="any" placeholder="e.g., 72.8697" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-pink focus:border-transparent">
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4 pt-4">
+                                <button id="search-nearby-btn" class="btn-primary flex-1">
+                                    Search Nearby
+                                </button>
+                                <button id="cancel-nearby-btn" class="btn-secondary flex-1">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Loading State -->
+            <div id="hotels-loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Loading skeleton cards -->
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
+                    <div class="h-48 bg-gray-200"></div>
+                    <div class="p-6">
+                        <div class="h-6 bg-gray-200 rounded mb-3"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-4"></div>
+                        <div class="h-8 bg-gray-200 rounded mb-4"></div>
+                        <div class="flex gap-2 mb-4">
+                            <div class="h-5 w-16 bg-gray-200 rounded-full"></div>
+                            <div class="h-5 w-20 bg-gray-200 rounded-full"></div>
+                            <div class="h-5 w-12 bg-gray-200 rounded-full"></div>
+                        </div>
+                        <div class="h-10 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
+                    <div class="h-48 bg-gray-200"></div>
+                    <div class="p-6">
+                        <div class="h-6 bg-gray-200 rounded mb-3"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-4"></div>
+                        <div class="h-8 bg-gray-200 rounded mb-4"></div>
+                        <div class="flex gap-2 mb-4">
+                            <div class="h-5 w-16 bg-gray-200 rounded-full"></div>
+                            <div class="h-5 w-20 bg-gray-200 rounded-full"></div>
+                            <div class="h-5 w-12 bg-gray-200 rounded-full"></div>
+                        </div>
+                        <div class="h-10 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
+                    <div class="h-48 bg-gray-200"></div>
+                    <div class="p-6">
+                        <div class="h-6 bg-gray-200 rounded mb-3"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-4"></div>
+                        <div class="h-8 bg-gray-200 rounded mb-4"></div>
+                        <div class="flex gap-2 mb-4">
+                            <div class="h-5 w-16 bg-gray-200 rounded-full"></div>
+                            <div class="h-5 w-20 bg-gray-200 rounded-full"></div>
+                            <div class="h-5 w-12 bg-gray-200 rounded-full"></div>
+                        </div>
+                        <div class="h-10 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="hotels-error" class="hidden text-center py-12">
+                <div class="text-red-500 text-6xl mb-4">⚠️</div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Unable to load hotels</h3>
+                <p class="text-gray-600 mb-6">We're having trouble loading the hotel information. Please try again later.</p>
+                <button onclick="loadHotels()" class="btn-primary">Try Again</button>
+            </div>
+
+            <!-- Hotels Grid -->
+            <div id="hotels-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
+                <!-- Hotel cards will be dynamically populated here -->
+            </div>
+
+            <!-- Load More Button -->
+            <div id="load-more-container" class="text-center mt-12 hidden">
+                <button id="load-more-btn" onclick="loadMoreHotels()" class="btn-secondary">
+                    Load More Hotels
+                </button>
             </div>
         </div>
     </section>
@@ -389,6 +578,488 @@
                 closeIyiSlider.click();
             }
         });
+
+        // Hotel API Integration
+        let currentPage = 1;
+        let hasMoreHotels = true;
+        const hotelsPerPage = 6;
+        let currentFilters = {};
+        let isNearbySearch = false;
+        let nearbyCoordinates = null;
+
+        // Load hotels and cities on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHotels();
+            loadCities();
+            setupFilterListeners();
+            setupNearbySearch();
+        });
+
+        async function loadHotels(page = 1, append = false) {
+            try {
+                // Show loading state
+                if (!append) {
+                    document.getElementById('hotels-loading').classList.remove('hidden');
+                    document.getElementById('hotels-error').classList.add('hidden');
+                    document.getElementById('hotels-grid').classList.add('hidden');
+                    document.getElementById('load-more-container').classList.add('hidden');
+                }
+
+                // Build API URL with filters
+                let apiUrl = `https://admin.iyirooms.com/api/public/hotels?page=${page}&size=${hotelsPerPage}`;
+                
+                // Add filters if not nearby search
+                if (!isNearbySearch) {
+                    if (currentFilters.city) {
+                        apiUrl += `&city=${encodeURIComponent(currentFilters.city)}`;
+                    }
+                    if (currentFilters.minPrice) {
+                        apiUrl += `&minPrice=${currentFilters.minPrice}`;
+                    }
+                    if (currentFilters.maxPrice) {
+                        apiUrl += `&maxPrice=${currentFilters.maxPrice}`;
+                    }
+                }
+
+                // Fetch hotels from API
+                const response = await fetch(apiUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data); // Debug log
+                
+                if (!append) {
+                    // Hide loading state
+                    document.getElementById('hotels-loading').classList.add('hidden');
+                }
+
+                // Check if we have hotels data (handle both camelCase and PascalCase)
+                const hotelsData = data.data || data.Data;
+                if (hotelsData && hotelsData.length > 0) {
+                    // Show hotels grid
+                    document.getElementById('hotels-grid').classList.remove('hidden');
+                    
+                    // Render hotels
+                    const hotelsGrid = document.getElementById('hotels-grid');
+                    const hotelsHTML = hotelsData.map(hotel => createHotelCard(hotel)).join('');
+                    
+                    if (append) {
+                        hotelsGrid.innerHTML += hotelsHTML;
+                    } else {
+                        hotelsGrid.innerHTML = hotelsHTML;
+                    }
+
+                    // Update pagination state
+                    currentPage = page;
+                    hasMoreHotels = hotelsData.length === hotelsPerPage;
+
+                    // Show/hide load more button based on pagination info (handle both cases)
+                    const pagination = data.pagination || data.Pagination;
+                    if (pagination && pagination.hasNextPage) {
+                        document.getElementById('load-more-container').classList.remove('hidden');
+                    } else {
+                        document.getElementById('load-more-container').classList.add('hidden');
+                    }
+                } else {
+                    // No hotels found
+                    if (!append) {
+                        document.getElementById('hotels-grid').innerHTML = `
+                            <div class="col-span-full text-center py-12">
+                                <div class="text-gray-400 text-6xl mb-4">🏨</div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">No hotels found</h3>
+                                <p class="text-gray-600">We couldn't find any hotels matching your criteria.</p>
+                            </div>
+                        `;
+                        document.getElementById('hotels-grid').classList.remove('hidden');
+                    }
+                    document.getElementById('load-more-container').classList.add('hidden');
+                }
+
+            } catch (error) {
+                console.error('Error loading hotels:', error);
+                
+                if (!append) {
+                    // Hide loading state and show error
+                    document.getElementById('hotels-loading').classList.add('hidden');
+                    document.getElementById('hotels-error').classList.remove('hidden');
+                }
+            }
+        }
+
+        async function loadNearbyHotels(page = 1, append = false) {
+            if (!nearbyCoordinates) return;
+            
+            try {
+                // Show loading state
+                if (!append) {
+                    document.getElementById('hotels-loading').classList.remove('hidden');
+                    document.getElementById('hotels-error').classList.add('hidden');
+                    document.getElementById('hotels-grid').classList.add('hidden');
+                    document.getElementById('load-more-container').classList.add('hidden');
+                }
+
+                const radius = document.getElementById('radius-select').value;
+                const apiUrl = `https://admin.iyirooms.com/api/public/hotels/nearby?lat=${nearbyCoordinates.lat}&lng=${nearbyCoordinates.lng}&radius=${radius}&page=${page}&size=${hotelsPerPage}`;
+                
+                const response = await fetch(apiUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('Nearby API Response:', data);
+                
+                if (!append) {
+                    document.getElementById('hotels-loading').classList.add('hidden');
+                }
+
+                // Handle nearby response structure
+                const hotelsData = data.hotels || data.Hotels || [];
+                if (hotelsData.length > 0) {
+                    document.getElementById('hotels-grid').classList.remove('hidden');
+                    
+                    const hotelsGrid = document.getElementById('hotels-grid');
+                    const hotelsHTML = hotelsData.map(hotel => createHotelCard(hotel)).join('');
+                    
+                    if (append) {
+                        hotelsGrid.innerHTML += hotelsHTML;
+                    } else {
+                        hotelsGrid.innerHTML = hotelsHTML;
+                    }
+
+                    currentPage = page;
+                    hasMoreHotels = hotelsData.length === hotelsPerPage;
+
+                    const pagination = data.pagination || data.Pagination;
+                    if (pagination && pagination.hasNextPage) {
+                        document.getElementById('load-more-container').classList.remove('hidden');
+                    } else {
+                        document.getElementById('load-more-container').classList.add('hidden');
+                    }
+                } else {
+                    if (!append) {
+                        document.getElementById('hotels-grid').innerHTML = `
+                            <div class="col-span-full text-center py-12">
+                                <div class="text-gray-400 text-6xl mb-4">🏨</div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">No hotels nearby</h3>
+                                <p class="text-gray-600">We couldn't find any hotels within ${radius}km of your location.</p>
+                            </div>
+                        `;
+                        document.getElementById('hotels-grid').classList.remove('hidden');
+                    }
+                    document.getElementById('load-more-container').classList.add('hidden');
+                }
+
+            } catch (error) {
+                console.error('Error loading nearby hotels:', error);
+                
+                if (!append) {
+                    document.getElementById('hotels-loading').classList.add('hidden');
+                    document.getElementById('hotels-error').classList.remove('hidden');
+                }
+            }
+        }
+
+        function loadMoreHotels() {
+            if (hasMoreHotels) {
+                if (isNearbySearch) {
+                    loadNearbyHotels(currentPage + 1, true);
+                } else {
+                    loadHotels(currentPage + 1, true);
+                }
+            }
+        }
+
+        async function loadCities() {
+            try {
+                const response = await fetch('https://admin.iyirooms.com/api/public/hotels/cities');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const cities = await response.json();
+                console.log('Cities API Response:', cities);
+
+                const citySelect = document.getElementById('city-filter');
+                const citiesData = cities.data || cities.Data || cities || [];
+
+                // Clear existing options except "All Cities"
+                citySelect.innerHTML = '<option value="">All Cities</option>';
+
+                // Add cities
+                citiesData.forEach(city => {
+                    const cityName = city.city || city.City || city.name || city.Name;
+                    const stateName = city.state || city.State || '';
+                    const displayName = stateName ? `${cityName}, ${stateName}` : cityName;
+                    const option = document.createElement('option');
+                    option.value = cityName;
+                    option.textContent = displayName;
+                    citySelect.appendChild(option);
+                });
+
+            } catch (error) {
+                console.error('Error loading cities:', error);
+            }
+        }
+
+        function setupFilterListeners() {
+            // City filter
+            document.getElementById('city-filter').addEventListener('change', function() {
+                currentFilters.city = this.value;
+                isNearbySearch = false;
+                currentPage = 1;
+                loadHotels();
+            });
+
+            // Price filter
+            document.getElementById('price-filter').addEventListener('change', function() {
+                const value = this.value;
+                if (value) {
+                    const [min, max] = value.split('-');
+                    currentFilters.minPrice = min;
+                    currentFilters.maxPrice = max === '+' ? null : max;
+                } else {
+                    currentFilters.minPrice = null;
+                    currentFilters.maxPrice = null;
+                }
+                isNearbySearch = false;
+                currentPage = 1;
+                loadHotels();
+            });
+
+            // Clear filters
+            document.getElementById('clear-filters').addEventListener('click', function() {
+                document.getElementById('city-filter').value = '';
+                document.getElementById('price-filter').value = '';
+                currentFilters = {};
+                isNearbySearch = false;
+                currentPage = 1;
+                loadHotels();
+            });
+
+            // More hotels
+            document.getElementById('more-hotels-btn').addEventListener('click', function() {
+                loadMoreHotels();
+            });
+        }
+
+        function setupNearbySearch() {
+            const nearbyBtn = document.getElementById('nearby-btn');
+            const nearbyModal = document.getElementById('nearby-modal');
+            const closeModal = document.getElementById('close-nearby-modal');
+            const cancelBtn = document.getElementById('cancel-nearby-btn');
+            const getLocationBtn = document.getElementById('get-location-btn');
+            const manualLocationBtn = document.getElementById('manual-location-btn');
+            const searchNearbyBtn = document.getElementById('search-nearby-btn');
+            const manualInput = document.getElementById('manual-location-input');
+
+            // Open modal
+            nearbyBtn.addEventListener('click', () => {
+                nearbyModal.classList.remove('hidden');
+            });
+
+            // Close modal
+            [closeModal, cancelBtn].forEach(btn => {
+                btn.addEventListener('click', () => {
+                    nearbyModal.classList.add('hidden');
+                    manualInput.classList.add('hidden');
+                });
+            });
+
+            // Get location
+            getLocationBtn.addEventListener('click', () => {
+                if (navigator.geolocation) {
+                    getLocationBtn.textContent = 'Getting Location...';
+                    getLocationBtn.disabled = true;
+                    
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            nearbyCoordinates = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+                            getLocationBtn.textContent = 'Location Found!';
+                            setTimeout(() => {
+                                searchNearbyHotels();
+                            }, 1000);
+                        },
+                        (error) => {
+                            console.error('Geolocation error:', error);
+                            getLocationBtn.textContent = 'Location Failed';
+                            setTimeout(() => {
+                                getLocationBtn.textContent = 'Use My Location';
+                                getLocationBtn.disabled = false;
+                            }, 2000);
+                        }
+                    );
+                } else {
+                    alert('Geolocation is not supported by this browser.');
+                }
+            });
+
+            // Manual location
+            manualLocationBtn.addEventListener('click', () => {
+                manualInput.classList.toggle('hidden');
+            });
+
+            // Search nearby
+            searchNearbyBtn.addEventListener('click', () => {
+                const lat = document.getElementById('lat-input').value;
+                const lng = document.getElementById('lng-input').value;
+                
+                if (lat && lng) {
+                    nearbyCoordinates = { lat: parseFloat(lat), lng: parseFloat(lng) };
+                    searchNearbyHotels();
+                } else {
+                    alert('Please enter valid coordinates.');
+                }
+            });
+        }
+
+        function searchNearbyHotels() {
+            if (nearbyCoordinates) {
+                isNearbySearch = true;
+                currentPage = 1;
+                document.getElementById('nearby-modal').classList.add('hidden');
+                document.getElementById('manual-location-input').classList.add('hidden');
+                loadNearbyHotels();
+            }
+        }
+
+        function createHotelCard(hotel) {
+            // Handle both camelCase and PascalCase field names
+            const hotelName = hotel.name || hotel.Name || hotel.hotelName || 'iYi Hotel';
+            const city = hotel.city || hotel.City || 'Unknown City';
+            const state = hotel.state || hotel.State || '';
+            const rating = hotel.rating || hotel.Rating || hotel.averageRating || 4.5;
+            
+            // Handle image URL - check for PrimaryPhoto field from API
+            let imageUrl = hotel.imageUrl || hotel.image || hotel.thumbnail || hotel.PrimaryPhoto || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+            
+            // If PrimaryPhoto is a relative path, construct the full URL with /upload/ prefix
+            if (hotel.PrimaryPhoto && !hotel.PrimaryPhoto.startsWith('http')) {
+                imageUrl = `https://admin.iyirooms.com/upload/${hotel.PrimaryPhoto}`;
+            }
+            
+            // Get hourly pricing information based on API structure (handle PascalCase fields)
+            let priceDisplay = '₹999';
+            let priceRange = '';
+            
+            // Check for different pricing structures from API - prioritize hourly rates
+            if (hotel.pricing) {
+                if (hotel.pricing.hourlyRates && hotel.pricing.hourlyRates.length > 0) {
+                    const hourlyRate = hotel.pricing.hourlyRates[0];
+                    if (hourlyRate.hourlyPayableAmount) {
+                        priceDisplay = `₹${Math.round(hourlyRate.hourlyPayableAmount).toLocaleString()}`;
+                    } else if (hourlyRate.hourlyPrice) {
+                        priceDisplay = `₹${Math.round(hourlyRate.hourlyPrice).toLocaleString()}`;
+                    }
+                } else if (hotel.pricing.minHourlyPrice && hotel.pricing.maxHourlyPrice) {
+                    priceDisplay = `₹${Math.round(hotel.pricing.minHourlyPrice).toLocaleString()}`;
+                    priceRange = ` - ₹${Math.round(hotel.pricing.maxHourlyPrice).toLocaleString()}`;
+                }
+            } else if (hotel.hourlyPrice) {
+                priceDisplay = `₹${Math.round(hotel.hourlyPrice).toLocaleString()}`;
+            } else if (hotel.minHourlyPrice || hotel.MinHourlyPrice) {
+                const minPrice = hotel.minHourlyPrice || hotel.MinHourlyPrice;
+                priceDisplay = `₹${Math.round(minPrice).toLocaleString()}`;
+                
+                // Check for hourly price range
+                if (hotel.maxHourlyPrice || hotel.MaxHourlyPrice) {
+                    const maxPrice = hotel.maxHourlyPrice || hotel.MaxHourlyPrice;
+                    if (maxPrice > minPrice) {
+                        priceRange = ` - ₹${Math.round(maxPrice).toLocaleString()}`;
+                    }
+                }
+            }
+
+            // Generate amenities based on hotel data
+            const amenities = generateAmenities(hotel);
+
+            return `
+                <div class="hotel-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="${imageUrl}" alt="${hotelName}" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'">
+                        <div class="absolute top-4 right-4 bg-brand-pink text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            ${rating.toFixed(1)} ★
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">${hotelName}</h3>
+                        <p class="text-gray-600 mb-3 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            ${city}${state ? ', ' + state : ''}
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-brand-pink">${priceDisplay}${priceRange}</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${amenities.map(amenity => `
+                                <span class="bg-${amenity.color}-100 text-${amenity.color}-800 text-xs px-2 py-1 rounded-full">${amenity.name}</span>
+                            `).join('')}
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center">
+                            View in App
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateAmenities(hotel) {
+            const defaultAmenities = [
+                { name: 'Free Wi-Fi', color: 'green' },
+                { name: 'Breakfast', color: 'blue' }
+            ];
+
+            // Add more amenities based on hotel data if available
+            if (hotel.amenities) {
+                const additionalAmenities = hotel.amenities.slice(0, 2).map(amenity => ({
+                    name: amenity,
+                    color: getAmenityColor(amenity)
+                }));
+                return [...defaultAmenities, ...additionalAmenities];
+            }
+
+            // Add random amenities for variety
+            const randomAmenities = [
+                { name: 'Pool', color: 'purple' },
+                { name: 'Spa', color: 'yellow' },
+                { name: 'Gym', color: 'purple' },
+                { name: 'Restaurant', color: 'red' },
+                { name: 'Business Center', color: 'blue' }
+            ];
+
+            const randomAmenity = randomAmenities[Math.floor(Math.random() * randomAmenities.length)];
+            return [...defaultAmenities, randomAmenity];
+        }
+
+        function getAmenityColor(amenity) {
+            const amenityColors = {
+                'pool': 'purple',
+                'spa': 'yellow',
+                'gym': 'purple',
+                'restaurant': 'red',
+                'business': 'blue',
+                'wifi': 'green',
+                'breakfast': 'blue'
+            };
+
+            const amenityLower = amenity.toLowerCase();
+            for (const [key, color] of Object.entries(amenityColors)) {
+                if (amenityLower.includes(key)) {
+                    return color;
+                }
+            }
+            return 'gray';
+        }
     </script>
 
 </body>
