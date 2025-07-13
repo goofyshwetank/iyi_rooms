@@ -1015,8 +1015,14 @@
 
         function generateAmenities(hotel) {
             const defaultAmenities = [
-                { name: 'Free Wi-Fi', color: 'green' },
-                { name: 'Breakfast', color: 'blue' }
+                { name: 'Queen Size Bed', color: 'purple' },
+                { name: 'Seating Area', color: 'blue' },
+                { name: 'AC', color: 'green' },
+                { name: 'TV', color: 'red' },
+                { name: 'WiFi', color: 'indigo' },
+                { name: 'Power Backup', color: 'yellow' },
+                { name: 'CCTV', color: 'gray' },
+                { name: 'Parking', color: 'orange' }
             ];
 
             // Add more amenities based on hotel data if available
@@ -1028,27 +1034,28 @@
                 return [...defaultAmenities, ...additionalAmenities];
             }
 
-            // Add random amenities for variety
-            const randomAmenities = [
-                { name: 'Pool', color: 'purple' },
-                { name: 'Spa', color: 'yellow' },
-                { name: 'Gym', color: 'purple' },
-                { name: 'Restaurant', color: 'red' },
-                { name: 'Business Center', color: 'blue' }
-            ];
-
-            const randomAmenity = randomAmenities[Math.floor(Math.random() * randomAmenities.length)];
-            return [...defaultAmenities, randomAmenity];
+            // Return all default amenities
+            return defaultAmenities;
         }
 
         function getAmenityColor(amenity) {
             const amenityColors = {
+                'queen': 'purple',
+                'bed': 'purple',
+                'seating': 'blue',
+                'area': 'blue',
+                'ac': 'green',
+                'tv': 'red',
+                'wifi': 'indigo',
+                'power': 'yellow',
+                'backup': 'yellow',
+                'cctv': 'gray',
+                'parking': 'orange',
                 'pool': 'purple',
                 'spa': 'yellow',
                 'gym': 'purple',
                 'restaurant': 'red',
                 'business': 'blue',
-                'wifi': 'green',
                 'breakfast': 'blue'
             };
 
