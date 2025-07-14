@@ -3,17 +3,36 @@ const API_BASE_URL = 'https://admin.iyirooms.com/api/public';
 let currentPage = 1;
 let currentFilters = {};
 
-// DOM Elements
-const hotelsContainer = document.getElementById('hotels-container');
+// DOM Elements - Safe selection to avoid null errors
+const hotelsContainer = document.getElementById('hotels-container') || document.getElementById('hotels-grid');
+const hotelsLoading = document.getElementById('hotels-loading');
+const hotelsError = document.getElementById('hotels-error');
 const cityFilter = document.getElementById('city-filter');
 const priceFilter = document.getElementById('price-filter');
 const ratingFilter = document.getElementById('rating-filter');
+const sortFilter = document.getElementById('sort-filter');
+const radiusFilter = document.getElementById('radius-filter');
 const searchButton = document.getElementById('search-hotels');
-const loadMoreButton = document.getElementById('load-more');
+const loadMoreButton = document.getElementById('load-more') || document.getElementById('load-more-btn');
+const loadMoreContainer = document.getElementById('load-more-container');
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
 const themeToggle = document.getElementById('theme-toggle');
 const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+const nearbyBtn = document.getElementById('nearby-btn');
+const moreHotelsBtn = document.getElementById('more-hotels-btn');
+const clearFiltersBtn = document.getElementById('clear-filters');
+const nearbyModal = document.getElementById('nearby-modal');
+const closeNearbyModal = document.getElementById('close-nearby-modal');
+const getLocationBtn = document.getElementById('get-location-btn');
+const manualLocationBtn = document.getElementById('manual-location-btn');
+const manualLocationInput = document.getElementById('manual-location-input');
+const searchNearbyBtn = document.getElementById('search-nearby-btn');
+const cancelNearbyBtn = document.getElementById('cancel-nearby-btn');
+const radiusSelect = document.getElementById('radius-select');
+const latInput = document.getElementById('lat-input');
+const lngInput = document.getElementById('lng-input');
+const resultsCount = document.getElementById('results-count');
 
 // On site load, try to get user location and show nearby hotels
 async function tryLoadNearbyHotels() {
@@ -98,29 +117,20 @@ async function loadCities() {
 
 // Load hotels from API
 async function loadHotels(reset = true) {
+    if (!hotelsContainer) return;
+    
     if (reset) {
         currentPage = 1;
-        // Keep skeleton loaders while fetching
-        if (hotelsContainer.children.length === 0 || reset) {
-            hotelsContainer.innerHTML = `
-                ${Array(3).fill(`
-                <div class="hotel-card bg-white/80 backdrop-blur-sm rounded-3xl shadow-soft overflow-hidden skeleton border border-white/20 flex flex-col h-full">
-                    <div class="h-64 bg-gradient-to-br from-gray-200 to-gray-300 flex-shrink-0 rounded-t-3xl"></div>
-                    <div class="p-6 flex flex-col flex-1 min-h-0">
-                        <div class="flex-1 min-h-0">
-                            <div class="h-6 bg-gray-200 rounded-lg mb-3"></div>
-                            <div class="h-4 bg-gray-200 rounded mb-4"></div>
-                            <div class="h-5 bg-gray-200 rounded mb-4"></div>
-                            <div class="flex gap-2 mb-4">
-                                <div class="h-5 w-12 bg-gray-200 rounded-full"></div>
-                                <div class="h-5 w-16 bg-gray-200 rounded-full"></div>
-                                <div class="h-5 w-10 bg-gray-200 rounded-full"></div>
-                            </div>
-                        </div>
-                        <div class="h-10 bg-gray-200 rounded-xl mt-auto"></div>
-                    </div>
-                </div>`).join('')}
-            `;
+        
+        // Show loading state
+        if (hotelsLoading) {
+            hotelsLoading.classList.remove('hidden');
+        }
+        if (hotelsError) {
+            hotelsError.classList.add('hidden');
+        }
+        if (hotelsContainer) {
+            hotelsContainer.classList.add('hidden');
         }
     }
 
@@ -134,6 +144,14 @@ async function loadHotels(reset = true) {
         const response = await fetch(`${API_BASE_URL}/hotels?${params}`);
         const data = await response.json();
         
+        // Hide loading, show content
+        if (hotelsLoading) {
+            hotelsLoading.classList.add('hidden');
+        }
+        if (hotelsContainer) {
+            hotelsContainer.classList.remove('hidden');
+        }
+        
         if (reset) {
             hotelsContainer.innerHTML = '';
         }
@@ -144,33 +162,59 @@ async function loadHotels(reset = true) {
                 hotelsContainer.appendChild(hotelCard);
             });
 
+            // Update results count
+            if (resultsCount) {
+                const totalCount = data.Pagination ? data.Pagination.TotalCount : data.Data.length;
+                resultsCount.textContent = `Found ${totalCount} hotels`;
+            }
+
             // Show/hide load more button
             if (data.Pagination && data.Pagination.HasNextPage) {
-                loadMoreButton.classList.remove('hidden');
+                if (loadMoreButton) loadMoreButton.classList.remove('hidden');
+                if (loadMoreContainer) loadMoreContainer.classList.remove('hidden');
             } else {
-                loadMoreButton.classList.add('hidden');
+                if (loadMoreButton) loadMoreButton.classList.add('hidden');
+                if (loadMoreContainer) loadMoreContainer.classList.add('hidden');
             }
         } else {
             if(currentPage === 1) {
                 hotelsContainer.innerHTML = `
                     <div class="col-span-full text-center py-12">
-                        <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
+                        <div class="text-4xl text-gray-400 mb-4">🔍</div>
                         <h3 class="text-xl font-semibold text-gray-600 mb-2">No hotels found</h3>
                         <p class="text-gray-500">Try adjusting your filters or search criteria</p>
                     </div>
                 `;
+                if (resultsCount) {
+                    resultsCount.textContent = 'No hotels found';
+                }
             }
-            loadMoreButton.classList.add('hidden');
+            if (loadMoreButton) loadMoreButton.classList.add('hidden');
+            if (loadMoreContainer) loadMoreContainer.classList.add('hidden');
         }
     } catch (error) {
         console.error('Error loading hotels:', error);
+        
+        // Hide loading, show error
+        if (hotelsLoading) {
+            hotelsLoading.classList.add('hidden');
+        }
+        if (hotelsError) {
+            hotelsError.classList.remove('hidden');
+        } else if (hotelsContainer) {
+            hotelsContainer.classList.remove('hidden');
         hotelsContainer.innerHTML = `
             <div class="col-span-full text-center py-12">
-                <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+                    <div class="text-4xl text-red-400 mb-4">⚠️</div>
                 <h3 class="text-xl font-semibold text-gray-600 mb-2">Error loading hotels</h3>
                 <p class="text-gray-500">Please try again later</p>
+                    <button onclick="loadHotels()" class="mt-4 bg-brand-pink hover:bg-brand-pink-dark text-white font-bold py-2 px-6 rounded-lg">Try Again</button>
             </div>
         `;
+        }
+        if (resultsCount) {
+            resultsCount.textContent = 'Error loading hotels';
+        }
     }
 }
 
@@ -216,7 +260,6 @@ function createHotelCard(hotel) {
                 </p>
                 <div class="flex items-center justify-between mb-4">
                     <span class="text-xl font-bold text-brand-pink">₹${price}</span>
-                    <span class="text-gray-500 text-xs">per night</span>
                 </div>
                 <div class="flex flex-wrap gap-2 mb-4">
                     <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Wi-Fi</span>
@@ -237,35 +280,8 @@ function createHotelCard(hotel) {
 
 // Setup event listeners
 function setupEventListeners() {
-    // Search button
-    searchButton.addEventListener('click', () => {
-        currentFilters = {};
-        const city = cityFilter.value;
-        const price = priceFilter.value;
-        const rating = ratingFilter.value;
-
-        if (city) {
-            currentFilters.city = city;
-        }
-        if (price) {
-            const [min, max] = price.split('-');
-            currentFilters.minPrice = min;
-            if (max) currentFilters.maxPrice = max;
-        }
-        if (rating) {
-            currentFilters.rating = rating;
-        }
-        
-        loadHotels(true);
-    });
-
-    // Load more button
-    loadMoreButton.addEventListener('click', () => {
-        currentPage++;
-        loadHotels(false);
-    });
-
-    // Mobile menu
+    // Mobile menu toggle
+    if (mobileMenuButton && mobileMenu) {
     mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
@@ -276,14 +292,94 @@ function setupEventListeners() {
             mobileMenu.classList.add('hidden');
         }
     });
+    }
 
-    // Smooth scrolling for anchor links
+    // Filter change listeners
+    if (cityFilter) {
+        cityFilter.addEventListener('change', applyFilters);
+    }
+    if (priceFilter) {
+        priceFilter.addEventListener('change', applyFilters);
+    }
+    if (sortFilter) {
+        sortFilter.addEventListener('change', applyFilters);
+    }
+
+    // Search button (legacy)
+    if (searchButton) {
+        searchButton.addEventListener('click', applyFilters);
+    }
+
+    // Nearby hotels button
+    if (nearbyBtn && nearbyModal) {
+        nearbyBtn.addEventListener('click', () => {
+            nearbyModal.classList.remove('hidden');
+        });
+    }
+
+    // Close nearby modal
+    if (closeNearbyModal && nearbyModal) {
+        closeNearbyModal.addEventListener('click', () => {
+            nearbyModal.classList.add('hidden');
+        });
+    }
+
+    // Cancel nearby search
+    if (cancelNearbyBtn && nearbyModal) {
+        cancelNearbyBtn.addEventListener('click', () => {
+            nearbyModal.classList.add('hidden');
+        });
+    }
+
+    // Manual location toggle
+    if (manualLocationBtn && manualLocationInput) {
+        manualLocationBtn.addEventListener('click', () => {
+            manualLocationInput.classList.toggle('hidden');
+        });
+    }
+
+    // Get user location
+    if (getLocationBtn) {
+        getLocationBtn.addEventListener('click', getUserLocation);
+    }
+
+    // Search nearby
+    if (searchNearbyBtn) {
+        searchNearbyBtn.addEventListener('click', searchNearbyHotels);
+    }
+
+    // More hotels button
+    if (moreHotelsBtn) {
+        moreHotelsBtn.addEventListener('click', loadMoreHotels);
+    }
+
+    // Clear filters
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', clearAllFilters);
+    }
+
+    // Load more button
+    if (loadMoreButton) {
+        loadMoreButton.addEventListener('click', loadMoreHotels);
+    }
+
+    // Close modal when clicking outside
+    if (nearbyModal) {
+        nearbyModal.addEventListener('click', (e) => {
+            if (e.target === nearbyModal) {
+                nearbyModal.classList.add('hidden');
+            }
+        });
+    }
+
+    // Smooth scrolling for anchor links (only if on main page)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const headerHeight = document.querySelector('header').offsetHeight;
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 0;
                 const targetPosition = target.offsetTop - headerHeight;
                 window.scrollTo({
                     top: targetPosition,
@@ -292,6 +388,87 @@ function setupEventListeners() {
             }
         });
     });
+}
+
+// Apply current filters
+function applyFilters() {
+    currentFilters = {};
+    
+    if (cityFilter && cityFilter.value) {
+        currentFilters.city = cityFilter.value;
+    }
+    if (priceFilter && priceFilter.value) {
+        const [min, max] = priceFilter.value.split('-');
+        currentFilters.minPrice = min;
+        if (max && max !== '+') currentFilters.maxPrice = max;
+    }
+    if (ratingFilter && ratingFilter.value) {
+        currentFilters.rating = ratingFilter.value;
+    }
+    
+    loadHotels(true);
+}
+
+// Load more hotels
+function loadMoreHotels() {
+    currentPage++;
+    loadHotels(false);
+}
+
+// Clear all filters
+function clearAllFilters() {
+    if (cityFilter) cityFilter.value = '';
+    if (priceFilter) priceFilter.value = '';
+    if (sortFilter) sortFilter.value = 'name';
+    if (radiusFilter) radiusFilter.value = '';
+    
+    currentFilters = {};
+    loadHotels(true);
+}
+
+// Get user location
+function getUserLocation() {
+    if (!navigator.geolocation) {
+        alert('Geolocation is not supported by this browser.');
+        return;
+    }
+    
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            if (latInput) latInput.value = position.coords.latitude;
+            if (lngInput) lngInput.value = position.coords.longitude;
+            if (manualLocationInput) manualLocationInput.classList.remove('hidden');
+        },
+        (error) => {
+            console.error('Error getting location:', error);
+            alert('Unable to get your location. Please enter coordinates manually.');
+            if (manualLocationInput) manualLocationInput.classList.remove('hidden');
+        }
+    );
+}
+
+// Search nearby hotels
+function searchNearbyHotels() {
+    const lat = latInput ? latInput.value : null;
+    const lng = lngInput ? lngInput.value : null;
+    const radius = radiusSelect ? radiusSelect.value : 10;
+    
+    if (!lat || !lng) {
+        alert('Please provide valid coordinates.');
+        return;
+    }
+    
+    // Close modal
+    if (nearbyModal) nearbyModal.classList.add('hidden');
+    
+    // Update filters for nearby search
+    currentFilters = {
+        lat: lat,
+        lng: lng,
+        radius: radius
+    };
+    
+    loadHotels(true);
 }
 
 // Setup animations
