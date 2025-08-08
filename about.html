@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - iYi Rooms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Google Sans', 'Product Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        :root {
+            --brand-pink: #f91376;
+            --brand-pink-dark: #DB2777;
+            --brand-pink-light: #FBCFE8;
+            --brand-pink-extralight: #FFF1F2;
+        }
+        .bg-brand-pink { background-color: var(--brand-pink); }
+        .text-brand-pink { color: var(--brand-pink); }
+        .border-brand-pink { border-color: var(--brand-pink); }
+        .hover\:bg-brand-pink-dark:hover { background-color: var(--brand-pink-dark); }
+        .hover\:text-brand-pink-dark:hover { color: var(--brand-pink-dark); }
+        .ring-brand-pink { ring-color: var(--brand-pink); }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--brand-pink-extralight) 0%, #ffffff 70%, var(--brand-pink-light) 100%);
+        }
+
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
+    </style>
+    <meta name="description" content="About iYi Rooms – People’s Trusted Stay Partner. Learn about our vision, mission, founders, offerings, and contact details.">
+</head>
+<body class="bg-gray-50 text-gray-700">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 cursor-pointer relative group">
+                <img src="logo.png" alt="iYi Logo" width="90" height="45" />
+                <span class="absolute -right-3 top-2 flex items-center">
+                    <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-brand-pink opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-pink"></span>
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-5 lg:space-x-8">
+                <a href="index.html" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Home</a>
+                <a href="hotels.html" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Hotels</a>
+                <a href="about.html" class="text-brand-pink font-medium transition duration-300">About</a>
+                <a href="index.html#features" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Why iYi?</a>
+                <a href="index.html#how-it-works" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">How It Works</a>
+                <a href="index.html#contact" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Contact Us</a>
+                <a href="privacypolicy.html" class="text-gray-600 hover:text-brand-pink font-medium transition duration-300">Privacy Policy</a>
+                <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="bg-brand-pink hover:bg-brand-pink-dark text-white font-semibold py-2.5 px-5 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Download App</a>
+            </div>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-brand-pink focus:outline-none p-2 rounded-md">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-xl absolute top-full left-0 right-0 z-40 rounded-b-lg">
+            <a href="index.html" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Home</a>
+            <a href="hotels.html" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Hotels</a>
+            <a href="about.html" class="block px-6 py-4 text-brand-pink hover:bg-pink-50 transition duration-300 font-medium">About</a>
+            <a href="index.html#features" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Why iYi?</a>
+            <a href="index.html#how-it-works" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">How It Works</a>
+            <a href="index.html#contact" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Contact Us</a>
+            <a href="privacypolicy.html" class="block px-6 py-4 text-gray-600 hover:bg-pink-50 hover:text-brand-pink transition duration-300 font-medium">Privacy Policy</a>
+            <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="block mx-6 my-4 bg-brand-pink hover:bg-brand-pink-dark text-white text-center font-semibold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">Download App</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-gradient pt-24 pb-14 md:pt-28 md:pb-16 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute -top-20 -left-20 w-80 h-80 bg-pink-200 opacity-30 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-72 h-72 bg-pink-100 opacity-40 rounded-full blur-2xl"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 relative">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">About Us – iYi Rooms</h1>
+            <p class="text-lg text-gray-700 max-w-3xl">Welcome to iYi Rooms – People’s Trusted Stay Partner</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-2 space-y-8">
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <p class="text-gray-700 leading-relaxed">At iYi Rooms, we pride ourselves on being one of India's fastest-growing hotel booking platforms, offering flexible, affordable, and comfortable accommodations across top destinations. From cozy couple-friendly stays to standard and luxurious suites, we serve travelers looking for quality lodging in Lucknow, Kanpur, Delhi, Agra, Mathura, Manali, Nainital, Lakhimpur, Sitapur, Varanasi, and many other cities.</p>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Who We Are</h2>
+                    <p class="text-gray-700 leading-relaxed">iYi Rooms is more than just a hotel booking platform. We are a customer-first hospitality brand on a mission to redefine travel experiences. With a growing network of 100+ hotels across multiple cities, we provide hourly, nightly, and long-stay booking options to suit every travel need. We started with a single hotel in Lucknow, and today, we’re expanding not only across India but also preparing to reach international destinations.</p>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Our Vision</h2>
+                    <p class="text-gray-700 leading-relaxed">To revolutionize the travel and hospitality industry by blending the comfort of home with modern hotel amenities, while supporting small-scale hoteliers to grow and thrive in a competitive market.</p>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Our Mission</h2>
+                    <p class="text-gray-700 leading-relaxed">To make affordable, clean, and safe stays accessible across India. At iYi Rooms, we empower local hotel partners through innovation, transparency, and trust while delivering top-notch experiences to our guests with:</p>
+                    <ul class="mt-4 space-y-2 list-disc pl-6 text-gray-700">
+                        <li>Flexible hourly bookings (2, 4, 6 hours)</li>
+                        <li>Easy night stays at discounted rates</li>
+                        <li>Budget-friendly and premium room options</li>
+                    </ul>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Why Choose iYi Rooms?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3">For Guests:</h3>
+                            <ul class="space-y-2 text-gray-700 list-disc pl-6">
+                                <li>✅ Hourly basis room booking starting at just ₹499</li>
+                                <li>✅ 100% guaranteed check-in without hidden charges</li>
+                                <li>✅ Couple-friendly & budget-friendly options</li>
+                                <li>✅ Clean, secure, and comfortable rooms</li>
+                                <li>✅ Free stays with loyalty programs</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3">For Hoteliers:</h3>
+                            <ul class="space-y-2 text-gray-700 list-disc pl-6">
+                                <li>✅ No fake bookings or commissions</li>
+                                <li>✅ Revenue boost through hourly stays</li>
+                                <li>✅ Fast onboarding in just 2–3 days</li>
+                                <li>✅ Transparent partnership model</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Our Unique Offerings</h2>
+                    <ul class="space-y-2 text-gray-700 list-disc pl-6">
+                        <li>Hourly Bookings: Pay only for the hours you stay – perfect for quick rest or day-use rooms.</li>
+                        <li>Customer Loyalty Programs: Earn coins on each booking and enjoy a free room stay after your fourth booking within a month.</li>
+                        <li>Multiple Room Categories:</li>
+                    </ul>
+                    <ul class="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 text-gray-700 list-disc pl-6">
+                        <li>iYi Splendid</li>
+                        <li>iYi Lavish</li>
+                        <li>iYi Orchid</li>
+                    </ul>
+                    <ul class="mt-4 space-y-2 text-gray-700 list-disc pl-6">
+                        <li>City-Based Promotions: Influencer collaborations, engaging reels, giveaways, and more.</li>
+                    </ul>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Meet Our Founders</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-gray-900 font-semibold">🔹 Aviral Shukla – Founder & CEO</p>
+                            <p class="text-gray-700 leading-relaxed">With a Chartered Accountancy (CA) background, Aviral brings strategic financial insight and a visionary mindset to iYi Rooms. Under his leadership, the company has grown rapidly from a single-room idea into a thriving hotel and homes network across India.</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-900 font-semibold">🔹 Saumya Tripathi – Founder & COO</p>
+                            <p class="text-gray-700 leading-relaxed">Holding degrees in Law (LLB) and Company Secretaryship (CS), Saumya plays a pivotal role in operations, legal compliance, and strategic expansion. Her sharp execution skills and legal expertise ensure smooth onboarding, compliance, and long-term partner success.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Founders' Message</h2>
+                    <blockquote class="bg-pink-50 border-l-4 border-brand-pink p-4 md:p-5 text-gray-800 italic">
+                        “At iYi Rooms, we believe that comfort, affordability, and trust shouldn't be a luxury—they should be the standard. From our very first hotel in Lucknow to 100+ properties across India, our mission has been clear: empower travelers and support small hoteliers. We’re committed to transparency, innovation, and creating real value—whether you’re booking a stay or listing your property with us.
+                        We thank every guest and partner who has made iYi Rooms what it is today—and invite you to be a part of this journey with us.”
+                        <br/>– Aviral Shukla & Saumya Tripathi<br/>Founders, iYi Rooms
+                    </blockquote>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Meet the iYi Team</h2>
+                    <p class="text-gray-700 leading-relaxed">We are a young, dynamic, and passionate team driven by innovation and customer satisfaction. We promote a flexible and friendly working environment that encourages creativity and collaboration.</p>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Our Growth Highlights</h2>
+                    <ul class="space-y-2 text-gray-700 list-disc pl-6">
+                        <li>50,000+ Google Play Store downloads</li>
+                        <li>4-Star user rating</li>
+                        <li>10K+ Instagram followers</li>
+                        <li>Active in 10+ major Indian cities</li>
+                        <li>Plans underway for international expansion</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sidebar Contact -->
+            <aside class="space-y-6">
+                <div class="card bg-white rounded-2xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Contact Us</h3>
+                    <div class="space-y-3 text-gray-700">
+                        <p>📞 +91-9305527475</p>
+                        <p>🌐 www.iyirooms.com</p>
+                        <p>📧 Support@iyiroom.com</p>
+                        <p>📍 Locations: Lucknow | Delhi | Kanpur | Varanasi | Sitapur</p>
+                    </div>
+                    <div class="mt-4 flex gap-3">
+                        <a href="tel:+919305527475" class="btn-secondary">Call</a>
+                        <a href="mailto:Support@iyiroom.com" class="btn-secondary">Email</a>
+                        <a href="https://www.iyirooms.com" target="_blank" rel="noopener noreferrer" class="btn-primary">Visit Site</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="logo.png" alt="iYi Logo" width="90" height="45" />
+                    </div>
+                    <p class="text-gray-300 mb-4 max-w-md">Flexible and secure hourly & nightly hotel stays across India.</p>
+                    <a href="https://play.google.com/store/apps/details?id=io.iyirooms.app&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="inline-block">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-12" onerror="this.style.display='none';" />
+                    </a>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="hotels.html" class="text-gray-300 hover:text-white transition duration-300">Hotels</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition duration-300">About</a></li>
+                        <li><a href="index.html#contact" class="text-gray-300 hover:text-white transition duration-300">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-300 hover:text-white transition duration-300">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html" class="text-gray-300 hover:text-white transition duration-300">Refund Policy</a></li>
+                        <li><a href="guest-policies.html" class="text-gray-300 hover:text-white transition duration-300">Guest Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 iYi Rooms. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
